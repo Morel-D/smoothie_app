@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "240576553082",
+    "project_id": "smoothie-90e79",
+    "storage_bucket": "smoothie-90e79.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240576553082:android:e975e8f8b8e46e62e09bc3",
+        "android_client_info": {
+          "package_name": "com.morel.smoothie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240576553082-d14nos4glj1tv1dd2vp99iibifsaa43r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTDZwP_RLqugy3Fjb2dIls_bva9uqUcrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240576553082-d14nos4glj1tv1dd2vp99iibifsaa43r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
