@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smoothie/Pages/wrapper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +11,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return (MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          appBar: AppBar(
-        title: Text('Hellos'),
-        backgroundColor: Colors.teal[600],
-      )),
-    ));
+    return (MaterialApp(debugShowCheckedModeBanner: false, home: Wrapper()));
   }
 }
