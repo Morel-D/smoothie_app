@@ -29,6 +29,7 @@ class _SignInState extends State<SignIn> {
               print("No credentials has been added");
             } else {
               print("Credentials has been added");
+              print(result.uid);
             }
           },
           child: Text(
