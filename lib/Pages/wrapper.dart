@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smoothie/Pages/Authentication/authenticate.dart';
 import 'package:smoothie/Pages/Home/home.dart';
 
 class Wrapper extends StatelessWidget {
@@ -6,6 +7,6 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Home());
+    return SafeArea(child: Authenticate());
   }
 }
