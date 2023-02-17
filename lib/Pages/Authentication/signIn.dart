@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:smoothie/Services/auth.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+  // const SignIn({Key? key}) : super(key: key);
+
+  final Function toogleForm;
+  SignIn({required this.toogleForm});
 
   @override
   _SignInState createState() => _SignInState();
@@ -21,6 +24,20 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         title: Text('SignIn to CHRONOS Smoothie'),
         backgroundColor: Color.fromARGB(255, 11, 124, 64),
+        actions: [
+          TextButton.icon(
+              onPressed: () {
+                widget.toogleForm();
+              },
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              label: Text(
+                'Register',
+                style: TextStyle(color: Colors.white),
+              ))
+        ],
       ),
       body: Padding(
           padding: const EdgeInsets.all(70),

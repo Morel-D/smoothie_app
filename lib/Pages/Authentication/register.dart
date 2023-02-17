@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:smoothie/Services/auth.dart';
 
 class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+  // const Register({Key? key}) : super(key: key);
+
+  final Function toogleForm;
+  Register({required this.toogleForm});
 
   @override
   _RegisterState createState() => _RegisterState();
@@ -21,6 +24,20 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         title: Text('Register to CHRONOS Smoothie'),
         backgroundColor: Color.fromARGB(255, 11, 124, 64),
+        actions: [
+          TextButton.icon(
+              onPressed: () {
+                widget.toogleForm();
+              },
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              label: Text(
+                'Sign Up',
+                style: TextStyle(color: Colors.white),
+              ))
+        ],
       ),
       body: Padding(
           padding: const EdgeInsets.all(70),

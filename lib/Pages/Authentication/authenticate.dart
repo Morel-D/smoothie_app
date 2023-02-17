@@ -10,10 +10,18 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+  bool showSignUp = true;
+
+  void toogleForm() {
+    setState(() => showSignUp = !showSignUp);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Register(),
-    );
+    if (showSignUp) {
+      return SignIn(toogleForm: toogleForm);
+    } else {
+      return Register(toogleForm: toogleForm);
+    }
   }
 }
