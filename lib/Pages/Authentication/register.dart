@@ -13,9 +13,11 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
+  final _fromKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -40,37 +42,54 @@ class _RegisterState extends State<Register> {
         ],
       ),
       body: Padding(
-          padding: const EdgeInsets.all(70),
-          child: Form(
-              child: Column(
-            children: [
-              TextFormField(
-                onChanged: (val) {
-                  email = val;
-                },
-              ),
-              SizedBox(height: 12),
-              TextFormField(
-                obscureText: true,
-                onChanged: (val) {
-                  password = val;
-                },
-              ),
-              SizedBox(height: 15),
-              TextButton(
-                onPressed: () {
-                  print(email);
-                  print(password);
-                },
-                child: Text(
-                  'Register',
-                  style: TextStyle(color: Colors.white),
+        padding: const EdgeInsets.all(70),
+        child: Form(
+            key: _fromKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  validator: (val) =>
+                      val!.isEmpty ? 'Please Fill in the email' : null,
+                  onChanged: (val) {
+                    email = val;
+                  },
                 ),
-                style: TextButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 11, 124, 64)),
-              )
-            ],
-          ))),
+                SizedBox(height: 12),
+                TextFormField(
+                  obscureText: true,
+                  validator: (val) => val!.length < 6
+                      ? "Password too weak (alleast 6 characters)"
+                      : null,
+                  onChanged: (val) {
+                    password = val;
+                  },
+                ),
+                SizedBox(height: 15),
+                TextButton(
+                  onPressed: () async {
+                    if (_fromKey.currentState!.validate()) {
+                      dynamic result = _auth.register_with_email_and_password(
+                          email, password);
+                      if (result == null) {
+                        setState(() => error = 'Please supply a valide email');
+                      }
+                    }
+                  },
+                  child: Text(
+                    'Register',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: TextButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 11, 124, 64)),
+                ),
+                SizedBox(height: 12.0),
+                Text(
+                  error,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ],
+            )),
+      ),
     );
   }
 }
