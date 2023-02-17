@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smoothie/Pages/Authentication/register.dart';
 import 'package:smoothie/Pages/Authentication/signIn.dart';
 
 class Authenticate extends StatefulWidget {
@@ -12,7 +13,7 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SignIn(),
+      child: Register(),
     );
   }
 }

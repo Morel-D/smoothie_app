@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:smoothie/Services/auth.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
-  final AuthService _authService = AuthService();
+class _RegisterState extends State<Register> {
+  final AuthService _auth = AuthService();
 
   String email = '';
   String password = '';
@@ -19,7 +19,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 207, 255, 230),
       appBar: AppBar(
-        title: Text('SignIn to CHRONOS Smoothie'),
+        title: Text('Register to CHRONOS Smoothie'),
         backgroundColor: Color.fromARGB(255, 11, 124, 64),
       ),
       body: Padding(
@@ -46,7 +46,7 @@ class _SignInState extends State<SignIn> {
                   print(password);
                 },
                 child: Text(
-                  'Sign In',
+                  'Register',
                   style: TextStyle(color: Colors.white),
                 ),
                 style: TextButton.styleFrom(
