@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smoothie/Models/user.dart';
+import 'package:smoothie/Services/database.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -44,6 +45,12 @@ class AuthService {
     try {
       final UserCredential results = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+
+      // Creating a new document for the user with the uid
+
+      await DatabaseService(uid: results.user!.uid)
+          .updateUserData('Chocolate', 'chronos user', 100);
+
       return results.user;
     } catch (e) {
       print(e.toString());
