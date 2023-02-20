@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smoothie/Services/auth.dart';
+import 'package:smoothie/Shared/constant.dart';
 
 class SignIn extends StatefulWidget {
   // const SignIn({Key? key}) : super(key: key);
@@ -48,6 +49,8 @@ class _SignInState extends State<SignIn> {
               child: Column(
                 children: [
                   TextFormField(
+                    decoration:
+                        textDecoration.copyWith(hintText: "Enter Email"),
                     validator: (val) =>
                         val!.isEmpty ? "Please enter the email" : null,
                     onChanged: (val) {
@@ -56,6 +59,8 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(height: 12),
                   TextFormField(
+                    decoration:
+                        textDecoration.copyWith(hintText: "Enter Password"),
                     obscureText: true,
                     validator: (val) =>
                         val!.length < 6 ? "Password too weak" : null,

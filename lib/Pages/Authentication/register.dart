@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smoothie/Services/auth.dart';
+import 'package:smoothie/Shared/constant.dart';
 
 class Register extends StatefulWidget {
   // const Register({Key? key}) : super(key: key);
@@ -48,6 +49,7 @@ class _RegisterState extends State<Register> {
             child: Column(
               children: [
                 TextFormField(
+                  decoration: textDecoration.copyWith(hintText: "Enter Email"),
                   validator: (val) =>
                       val!.isEmpty ? 'Please Fill in the email' : null,
                   onChanged: (val) {
@@ -56,6 +58,8 @@ class _RegisterState extends State<Register> {
                 ),
                 SizedBox(height: 12),
                 TextFormField(
+                  decoration:
+                      textDecoration.copyWith(hintText: "Enter Password"),
                   obscureText: true,
                   validator: (val) => val!.length < 6
                       ? "Password too weak (alleast 6 characters)"
