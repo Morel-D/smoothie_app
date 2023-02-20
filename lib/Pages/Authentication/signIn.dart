@@ -13,9 +13,11 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AuthService _authService = AuthService();
+  final _fromKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -42,35 +44,52 @@ class _SignInState extends State<SignIn> {
       body: Padding(
           padding: const EdgeInsets.all(70),
           child: Form(
+              key: _fromKey,
               child: Column(
-            children: [
-              TextFormField(
-                onChanged: (val) {
-                  email = val;
-                },
-              ),
-              SizedBox(height: 12),
-              TextFormField(
-                obscureText: true,
-                onChanged: (val) {
-                  password = val;
-                },
-              ),
-              SizedBox(height: 15),
-              TextButton(
-                onPressed: () {
-                  print(email);
-                  print(password);
-                },
-                child: Text(
-                  'Sign In',
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: TextButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 11, 124, 64)),
-              )
-            ],
-          ))),
+                children: [
+                  TextFormField(
+                    validator: (val) =>
+                        val!.isEmpty ? "Please enter the email" : null,
+                    onChanged: (val) {
+                      email = val;
+                    },
+                  ),
+                  SizedBox(height: 12),
+                  TextFormField(
+                    obscureText: true,
+                    validator: (val) =>
+                        val!.length < 6 ? "Password too weak" : null,
+                    onChanged: (val) {
+                      password = val;
+                    },
+                  ),
+                  SizedBox(height: 15),
+                  TextButton(
+                    onPressed: () {
+                      if (_fromKey.currentState!.validate()) {
+                        dynamic results = _authService
+                            .sigin_with_email_and_password(email, password);
+                        if (results == null) {
+                          setState(() {
+                            error = "Could not validate the credentials";
+                          });
+                        }
+                      }
+                    },
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: TextButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 11, 124, 64)),
+                  ),
+                  SizedBox(height: 12.0),
+                  Text(
+                    error,
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ],
+              ))),
     );
   }
 }
