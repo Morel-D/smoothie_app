@@ -4,6 +4,7 @@ import 'package:smoothie/Services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:smoothie/Services/database.dart';
+import 'package:smoothie/Models/smoothie.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,8 +13,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthService _auth = AuthService();
 
-    return StreamProvider<QuerySnapshot?>.value(
-      initialData: null,
+    return StreamProvider<List<Smoothie>>.value(
+      initialData: [],
       value: DatabaseService(uid: '').smoothie,
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 207, 255, 230),

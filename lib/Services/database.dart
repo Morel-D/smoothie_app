@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:smoothie/Models/smoothie.dart';
 
 class DatabaseService {
   final String uid;
@@ -15,7 +16,18 @@ class DatabaseService {
         .set({'flavour': flavour, 'name': name, 'strength': strength});
   }
 
-  Stream<QuerySnapshot> get smoothie {
-    return collection.snapshots();
+  // smoothie list from snapshot
+
+  List<Smoothie> _smoothieListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return Smoothie(
+          name: doc.get('name') ?? '',
+          flavour: doc.get('flavour') ?? '',
+          strength: doc.get('strength') ?? 0);
+    }).toList();
+  }
+
+  Stream<List<Smoothie>> get smoothie {
+    return collection.snapshots().map(_smoothieListFromSnapshot);
   }
 }
