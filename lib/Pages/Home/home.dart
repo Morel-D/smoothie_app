@@ -13,6 +13,20 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthService _auth = AuthService();
 
+    void _showSettingPanel() {
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0, horizontal: 60.0),
+                child: Text("Hello world"),
+              ),
+            );
+          });
+    }
+
     return StreamProvider<List<Smoothie>>.value(
       initialData: [],
       value: DatabaseService(uid: '').smoothie,
@@ -29,7 +43,15 @@ class Home extends StatelessWidget {
                     await _auth.logOut();
                   },
                   icon: Icon(Icons.person)),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: IconButton(
+                  onPressed: () {
+                    _showSettingPanel();
+                  },
+                  icon: Icon(Icons.settings)),
+            ),
           ],
         ),
         body: SmoothieList(),
