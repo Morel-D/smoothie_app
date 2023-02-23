@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smoothie/Pages/Home/setting_form.dart';
 import 'package:smoothie/Pages/Home/smoothie_list.dart';
 import 'package:smoothie/Services/auth.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +22,7 @@ class Home extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 60.0),
-                child: Text("Hello world"),
+                child: SettingForm(),
               ),
             );
           });
