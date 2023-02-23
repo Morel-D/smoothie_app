@@ -23,7 +23,7 @@ class _SettingFormState extends State<SettingForm> {
 
   late String _currentName;
   late String? _currentFlavours;
-  late int _currentStrength;
+  int? _currentStrength;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,6 @@ class _SettingFormState extends State<SettingForm> {
             TextFormField(
                 decoration:
                     textDecoration.copyWith(hintText: "Enter your name"),
-                obscureText: true,
                 validator: (val) => val!.isEmpty ? 'please enter name' : null,
                 onChanged: (val) => setState(() {
                       _currentName = val;
@@ -47,6 +46,7 @@ class _SettingFormState extends State<SettingForm> {
             //dropdown
             SizedBox(height: 20.0),
             DropdownButtonFormField(
+              decoration: textDecoration,
               // value: _currentFlavours ?? 'Choose Flavour',
               items: flavours.map((flavour) {
                 return DropdownMenuItem(
@@ -58,12 +58,23 @@ class _SettingFormState extends State<SettingForm> {
             ),
 
             //slider
+            Slider(
+                value: (_currentStrength ?? 100).toDouble(),
+                activeColor: Colors.green[_currentStrength ?? 100],
+                inactiveColor: Colors.green[_currentStrength ?? 100],
+                min: 100.0,
+                max: 900.0,
+                divisions: 8,
+                onChanged: (val) => setState(() {
+                      _currentStrength = val.round();
+                    })),
+
             SizedBox(height: 20.0),
             TextButton(
               onPressed: () async {
                 print(_currentName);
                 print(_currentFlavours);
-                // print(_currentStrength);
+                print(_currentStrength);
               },
               child: Text(
                 'Update',
