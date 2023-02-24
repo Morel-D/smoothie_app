@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:smoothie/Models/user.dart';
+import 'package:smoothie/Services/database.dart';
 import 'package:smoothie/Shared/constant.dart';
 
 class SettingForm extends StatefulWidget {
@@ -27,6 +30,8 @@ class _SettingFormState extends State<SettingForm> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel>(context);
+
     return Form(
         key: _fromKey,
         child: Column(
@@ -72,9 +77,11 @@ class _SettingFormState extends State<SettingForm> {
             SizedBox(height: 20.0),
             TextButton(
               onPressed: () async {
-                print(_currentName);
-                print(_currentFlavours);
-                print(_currentStrength);
+                if (_fromKey.currentState!.validate()) {
+                  await DatabaseService(uid: user.uid).updateUserData(
+                      _currentFlavours!, _currentName, _currentStrength!);
+                  Navigator.pop(context);
+                }
               },
               child: Text(
                 'Update',

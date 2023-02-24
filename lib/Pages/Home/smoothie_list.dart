@@ -14,7 +14,7 @@ class SmoothieList extends StatefulWidget {
 class _SmoothieListState extends State<SmoothieList> {
   @override
   Widget build(BuildContext context) {
-    final smoothies = Provider.of<List<Smoothie>>(context);
+    final smoothies = Provider.of<List<Smoothie>?>(context) ?? [];
     // print(smoothies?.docs);
 
     // smoothies.forEach((smoothie) {
